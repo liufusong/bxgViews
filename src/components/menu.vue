@@ -1,7 +1,7 @@
 <template>
   <div style="height:100%;">
      <el-container>
-        <el-aside width="200px">
+        <el-aside width="200px" v-if="show">
           <div class="header">
             <img src="http://static.botue.com/images/avatar/5a5dbad453cc3.jpg" alt="">
             <p>前端学院</p>
@@ -31,7 +31,30 @@
           </ul>
         </el-aside>
         <el-container>
-          <el-header>Header</el-header>
+          <el-header>
+            <a href="javascript:;" @click="asideShow" class="navbar-brand">
+                <i class="fa fa-navicon"></i>
+            </a>
+            <ul>
+              <li>
+                  <a href="/profile">
+                      <i class="fa fa-user"></i>
+                      个人中心
+                  </a>
+                </li>
+                <li>
+                    <a href="javascript:;" id="logout">
+                        <i class="fa fa-sign-out"></i>
+                        退出
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <i class="fa fa-tasks"></i>
+                    </a>
+                </li>
+            </ul>
+          </el-header>
           <el-main>
             <router-view></router-view>
           </el-main>
@@ -41,14 +64,17 @@
 </template>
 <script>
 export default {
+  data(){
+    return {
+      show:true
+    }
+  },
   created(){
-    this.islogin()
+    // this.islogin()
   },
   methods:{
-    islogin(){
-      // this.$http.get('islogin').then(function(res){
-      //   console.log(res)
-      // })
+    asideShow(){
+      this.show=!this.show
     }
   }
 }
@@ -68,7 +94,8 @@ export default {
    
   }
   .el-aside .header{
-    background: #243443
+    background: #243443;
+    
   }
   .el-aside .header img{
     height: 60px;
@@ -96,8 +123,37 @@ export default {
     background: #243443;
   }
   
-
-  
+  .el-header{
+    text-align: left;
+  }
+  .el-header>a{
+    
+    display: inline-block;
+    float: left;
+  }
+  .el-header ul{
+    float:right;
+    list-style: none;
+  }
+  .el-header ul li{
+    float: left;
+    margin-left: 25px;
+  }
+  .el-header ul li a{
+    color:  #337ab7;
+    text-decoration: none;
+  }
+  .el-header ul li a i{  
+    background: none;
+    color: #337ab7;
+    padding: 0;
+  }
+  .el-header a i{
+    padding:10px;
+    background: #5cb85c;
+    border-radius:5px;
+    color: #fff;
+  }
 
 
 
