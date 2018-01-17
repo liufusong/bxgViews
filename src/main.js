@@ -8,6 +8,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './assets/css/main.css'
 import vueResource from 'vue-resource'
 
+
 import './assets/fontAwesome/css/font-awesome.css'
 // import './assets/fontAwesome/fonts/font-awesome'
 
