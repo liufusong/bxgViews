@@ -61,9 +61,12 @@
           if (valid) {
           
             this.$http.post('login',{user_name:this.ruleForm2.age,password:this.ruleForm2.pass},{emulateJSON:true,withCredentials:true}).then((res)=>{
-              if(res.body.message.length>0){
-                this.$router.push({path:'/home'})
-                console.log(res)
+              console.log(res.body.tip)
+             
+              if(res.body.tip==0){
+                this.$alert(res.body.message, '登陆提示')
+              }else{
+                this.$router.push({path:'/menu'})
               }
               
             })
