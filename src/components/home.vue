@@ -131,7 +131,7 @@ export default {
   }  
 }
 </script>
-<style>
+<style lang="scss">
 .top{
   padding:30px;
   background: #ccc;
@@ -141,14 +141,14 @@ export default {
   display: flex;
   list-style: none;
    justify-content: space-around;
-}
-.top ul li{
- width:23%;
-  padding: 10px 0;
-  background: red;
-  color: #fff;
-  border-radius:10px;
-}
+   li{
+    width:23%;
+      padding: 10px 0;
+      background: red;
+      color: #fff;
+      border-radius:10px;
+    }
+} 
 
 .top ul li:nth-child(1){
   background: #FC8675;

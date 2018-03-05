@@ -8,6 +8,21 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './assets/css/main.css'
 import vueResource from 'vue-resource'
 
+import vuex from 'vuex'
+
+Vue.use(vuex)
+
+const store = new vuex.Store({
+  state:{
+    avatar:'123'
+  },
+  mutations:{
+    editImg(state,url){
+      state.avatar = url
+    }
+  }
+})
+
 
 import './assets/fontAwesome/css/font-awesome.css'
 // import './assets/fontAwesome/fonts/font-awesome'
@@ -25,6 +40,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })

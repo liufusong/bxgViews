@@ -3,7 +3,8 @@
      <el-container>
         <el-aside width="200px" v-if="show">
           <div class="header">
-            <img src="http://static.botue.com/images/avatar/5a5dbad453cc3.jpg" alt="">
+           
+            <img id="avatar" onError="this.src='http://localhost:2000/public/zw.jpg'" :src="$store.state.avatar" alt="">
             <p>前端学院</p>
           </div>
           <ul class="menu">
@@ -14,17 +15,17 @@
               </router-link>
             
               <router-link to="/menu/teacher" tag="li">
-                  <i class="fa fa-dashboard"></i>
+                  <i class="fa fa-mortar-board"></i>
                   讲师管理
               </router-link>
            
               <router-link to="/menu/list" tag="li">
-                  <i class="fa fa-dashboard"></i>
+                  <i class="fa fa-indent"></i>
                   分类管理
               </router-link>
             
               <router-link to="/menu/class" class="active" tag="li">
-                  <i class="fa fa-dashboard"></i>
+                  <i class="fa fa-th"></i>
                   课程管理
               </router-link>
             
@@ -71,10 +72,19 @@ export default {
   },
   created(){
     // this.islogin()
+    this.getAvatar()
   },
   methods:{
     asideShow(){
       this.show=!this.show
+    },
+    getAvatar(){
+      this.$http.get('getImg').then(function(res){
+          console.log(res.body)
+          
+          var url = "http://localhost:2000/public/"+res.body[0].img_url
+          this.$store.commit('editImg',url)
+      })
     }
   }
 }
@@ -119,6 +129,13 @@ export default {
     color: #fff;
     cursor: pointer;
   }
+  .el-aside .menu li i{
+     -webkit-transition: transform 0.5s; 
+    transition: transform 0.5s;  
+    transform: scale(1);
+    margin-right:10px;
+  }
+  
   .el-aside .menu li.router-link-active{
     background: #243443;
   }
@@ -147,12 +164,18 @@ export default {
     background: none;
     color: #337ab7;
     padding: 0;
+   
   }
   .el-header a i{
     padding:10px;
     background: #5cb85c;
     border-radius:5px;
     color: #fff;
+  }
+
+
+  .el-aside .menu li.router-link-active i{
+    transform: scale(1.3);
   }
 
 
